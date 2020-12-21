@@ -15,8 +15,8 @@ def save_to():
     if not os.path.exists(cfg.results):
         os.mkdir(cfg.results)
     if cfg.is_training:
-        loss = cfg.results + '/{}_loss2.csv'.format(str(cfg.epoch))
-        train_acc = cfg.results + '/{}_train_acc2.csv'.format(str(cfg.epoch))
+        loss = cfg.results + '/{}_loss_{}.csv'.format(cfg.dataset, str(cfg.epoch))
+        train_acc = cfg.results + '/{}_train_acc_{}.csv'.format(cfg.dataset, str(cfg.epoch))
 
         if os.path.exists(loss):
             os.remove(loss)
@@ -29,7 +29,7 @@ def save_to():
         fd_loss.write('step,loss\n')
         return(fd_train_acc, fd_loss)
     else:
-        test_acc = cfg.results + '/{}_test_acc2.csv'.format(str(cfg.epoch))
+        test_acc = cfg.results + '/{}_test_acc_{}.csv'.format(cfg.dataset, str(cfg.epoch))
         if os.path.exists(test_acc):
             os.remove(test_acc)
         fd_test_acc = open(test_acc, 'w')
