@@ -76,8 +76,32 @@ def make_data():
         np.save(os.path.join(os.getcwd(), 'data', 'quantitative_precipitation', tt.split('_')[0]+'_data2'), tt_array_shuffled)
         np.save(os.path.join(os.getcwd(), 'data', 'quantitative_precipitation', tt.split('_')[0]+'_label2'), tt_array_label_shuffled)
 
+def make_test_label():
+    complete_labelname = os.path.join(os.getcwd(), 'data', 'quantitative_precipitation', 'testing_label2.npy')
+    testing_label = np.load(complete_labelname)
+    print(testing_label.shape) #349
+
+    target_filename = os.path.join(os.getcwd(), 'results', 'testing_label.csv')
+    fd_target_filename = open(target_filename, 'w')
+    fd_target_filename.write('testing_label\n')
+
+    for label in testing_label:
+        fd_target_filename.write(str(label)+'\n')
+    fd_target_filename.close()
+
+def read_csv():
+    fd_testing_label = open(os.path.join(os.getcwd(), 'results', 'testing_label.csv'), 'r')
+    testing_label = []
+    for i in fd_testing_label:
+        zo_str = i[0]
+        if zo_str == 't':continue
+        testing_label.append(zo_str)
+    print(len(testing_label))
+
 if __name__ == "__main__":
     print(type(np.load(os.path.join(os.getcwd(), 'data', 'quantitative_precipitation', 'training_data2.npy'))[0]))
     print(type(np.load(os.path.join(os.getcwd(), 'data', 'quantitative_precipitation', 'training_label2.npy'))[0]))
     print(type(np.load(os.path.join(os.getcwd(), 'data', 'quantitative_precipitation', 'testing_data2.npy'))[0]))
     print(type(np.load(os.path.join(os.getcwd(), 'data', 'quantitative_precipitation', 'testing_label2.npy'))[0]))
+    #make_test_label()
+    read_csv()
