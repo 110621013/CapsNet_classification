@@ -157,5 +157,6 @@ class CapsNet(object):
         train_summary.append(tf.summary.image('reconstruction_img', recon_img))
         self.train_summary = tf.summary.merge(train_summary)
 
+        # argmax_idx is predict
         correct_prediction = tf.equal(tf.to_int32(self.labels), self.argmax_idx)
         self.accuracy = tf.reduce_sum(tf.cast(correct_prediction, tf.float32))

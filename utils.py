@@ -109,11 +109,17 @@ def load_quantitative_precipitation(batch_size, is_training=True):
 
         return trX, trY, num_tr_batch
     else:
+        # normal
         fd = np.load(os.path.join(target_path, 'testing_data2.npy'))
         teX = np.reshape(fd, (test_num, 28, 28, 1))
-
         fd = np.load(os.path.join(target_path, 'testing_label2.npy'))
         teY = np.reshape(fd, (test_num))
+
+        # rotated
+        #fd = np.load(os.path.join(target_path, 'testing_images_rotated_data.npy'))
+        #teX = np.reshape(fd, (test_num, 28, 28, 1))
+        #fd = np.load(os.path.join(target_path, 'testing_images_rotated_label.npy'))
+        #teY = np.reshape(fd, (test_num))
 
         num_te_batch = test_num // batch_size
         return teX / 255., teY, num_te_batch
