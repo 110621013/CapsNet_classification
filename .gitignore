@@ -2,3 +2,9 @@
 logdir/
 myself/test-images/
 myself/training-images/
+quantitative_precipitation_deal/original_dataset
+quantitative_precipitation_deal/original_dataset_rotated
+data/quantitative_precipitation/testing_data_origin.npy
+data/quantitative_precipitation/training_data_origin.npy
+data/quantitative_precipitation/testing_label_origin.npy
+data/quantitative_precipitation/training_label_origin.npy

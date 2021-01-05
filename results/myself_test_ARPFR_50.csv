@@ -1,0 +1,2 @@
+accuracy_score,recall_score,precision_score,f1_score,roc_auc_score
+0.53750,0.31193,0.31776,0.31481,0.48298

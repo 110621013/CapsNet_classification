@@ -239,6 +239,7 @@ if __name__ == "__main__":
         'fashion-mnist',
         'myself',
         'quantitative_precipitation'
+        'quantitative_precipitation_origin'
     ]
     try:
         if sys.argv[2] in aceptable_dataset:

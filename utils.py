@@ -124,6 +124,37 @@ def load_quantitative_precipitation(batch_size, is_training=True):
         num_te_batch = test_num // batch_size
         return teX / 255., teY, num_te_batch
 
+def load_quantitative_precipitation_origin(batch_size, is_training=True):
+    target_path = os.path.join('data', 'quantitative_precipitation')
+    train_num, test_num = 719, 349
+    if is_training:
+        fd = np.load(os.path.join(target_path, 'training_data_origin.npy'))
+        trainX = np.reshape(fd, (train_num, 1000, 538, 1))
+
+        fd = np.load(os.path.join(target_path, 'training_label_origin.npy'))
+        trainY = np.reshape(fd, (train_num))
+
+        trX = trainX[:] / 255.
+        trY = trainY[:]
+        num_tr_batch = train_num // batch_size
+
+        return trX, trY, num_tr_batch
+    else:
+        # normal
+        fd = np.load(os.path.join(target_path, 'testing_data_origin.npy'))
+        teX = np.reshape(fd, (test_num, 1000, 538, 1))
+        fd = np.load(os.path.join(target_path, 'testing_data_origin.npy'))
+        teY = np.reshape(fd, (test_num))
+
+        # rotated
+        #fd = np.load(os.path.join(target_path, 'testing_images_rotated_data.npy'))
+        #teX = np.reshape(fd, (test_num, 28, 28, 1))
+        #fd = np.load(os.path.join(target_path, 'testing_images_rotated_label.npy'))
+        #teY = np.reshape(fd, (test_num))
+
+        num_te_batch = test_num // batch_size
+        return teX / 255., teY, num_te_batch
+
 def load_data(dataset, batch_size, is_training=True, one_hot=False):
     if dataset == 'mnist':
         return load_mnist(batch_size, is_training)
@@ -133,6 +164,8 @@ def load_data(dataset, batch_size, is_training=True, one_hot=False):
         return load_myself(batch_size, is_training)
     elif dataset == 'quantitative_precipitation':
         return load_quantitative_precipitation(batch_size, is_training)
+    elif dataset == 'quantitative_precipitation_origin':
+        return load_quantitative_precipitation_origin(batch_size, is_training)
     else:
         raise Exception('Invalid dataset, please check the name of dataset:', dataset)
 
