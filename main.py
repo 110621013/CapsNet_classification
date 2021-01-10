@@ -238,7 +238,7 @@ if __name__ == "__main__":
         'mnist',
         'fashion-mnist',
         'myself',
-        'quantitative_precipitation'
+        'quantitative_precipitation',
         'quantitative_precipitation_origin'
     ]
     try:
